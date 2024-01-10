@@ -1,44 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crop Prediction Result</title>
     <style>
         body {
-            background-image: url('https://wallpapers.com/images/high/agriculture-pictures-gex3ph56jhjkmtjt.webp'); /* Replace with your image URL */
-            background-size: cover;
-            background-position: center;
-            backdrop-filter: blur(2px);
-            color: #fff;
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-        }
+    background-image: url('https://images.unsplash.com/photo-1530464684439-723262c0d16e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(0px);
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    opacity: 0; /* Initial opacity set to 0 for fade-in effect */
+    animation: feBlend 0.5s ease-in forwards;
+}
 
-        #prediction-result {
-            background-color: #2c2c2c;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
+@keyframes feBlend {
+    from {
+        opacity: 0;
+    }
 
-        #result {
-            font-size: 18px;
-        }
+    to {
+        opacity: 1;
+    }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://images.unsplash.com/photo-1530464684439-723262c0d16e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+    background-size: cover;
+    background-position: center;
+    backdrop-filter: blur(5px);
+    z-index: -1;
+}
+
+#prediction-result {
+    position: relative;
+    background-color: rgba(124, 48, 30, 0);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    border: 2px solid #ad4431; /* Border color for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1; /* Ensure the content appears above the blurred background */
+}
+
+h3 {
+    font-size: 24px;
+    font-family: cursive;
+    color: #7f2315; /* Red color for the heading */
+    margin-bottom: 25px;
+}
+
+#result {
+    font-size: 28px;
+    font-weight: bolder;
+    color: #a12f20d4; /* Light gray text color */
+}
+
     </style>
 </head>
+
 <body>
     <div id="prediction-result">
         <h3>Prediction Result</h3>
         <p id="result">{{ res }}</p>
     </div>
 </body>
+
 </html>
-
-
