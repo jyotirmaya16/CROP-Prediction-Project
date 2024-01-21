@@ -51,7 +51,7 @@ def showdata():
     return render_template('showdata.html',data=li)
 
 
-
+ 
 
 if __name__ =="__main__":
     app.run(host='0.0.0.0',port= 5050)
