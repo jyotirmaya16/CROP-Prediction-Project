@@ -48,37 +48,91 @@
             z-index: -1;
         }
 
-        #prediction-result {
-            position: relative;
-            background-color: rgba(124, 48, 30, 0);
-            backdrop-filter: blur(5px);
+
+        .card {
+            position: fixed;
+            transform: translate(0px, 0px);
+            width: 280px;
+            height: 254px;
+            background-image: linear-gradient(163deg, #d1301b 0%, #3700ff 100%);
             border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            border: 2px solid #ad4431;
-            /* Border color for the container */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            z-index: 1;
-            /* Ensure the content appears above the blurred background */
+            transition: all .3s;
+        }
+
+        .card2 {
+            position: fixed;
+            transform: translate(0px, 0px);
+            width: 280px;
+            height: 254px;
+            border-radius: 0px;
+            transition: all .2s;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            /* Dark mode colors and gradient */
+            background: #121212;
+            /* Fallback for browsers that don't support gradients */
+            background: linear-gradient(135deg,
+                    #321915 25%,
+                    #1a1a1a 25%,
+                    #1a1a1a 50%,
+                    #321915 50%,
+                    #321915 75%,
+                    #1a1a1a 75%,
+                    #1a1a1a);
+            background-size: 40px 40px;
+            animation: move 5s linear infinite;
+        }
+
+        @keyframes move {
+            0% {
+                background-position: 0 0;
+            }
+
+            100% {
+                background-position: 40px 40px;
+            }
+        }
+
+        .card2:hover {
+            transform: scale(0.98);
+            border-radius: 20px;
+        }
+
+        .card2 h3 {
+            margin-bottom: 40px;
+            /* Adjust the margin as needed to separate the title from content */
+        }
+
+
+        .card:hover {
+            box-shadow: 0px 0px 30px 1px rgba(26, 98, 253, 0.515);
         }
 
         h3 {
-            font-size: 24px;
+            position: fixed;
+            transform: translate(0px, -20px);
+            font-size: 29px;
             color: #7f2315;
             /* Red color for the heading */
             margin-bottom: 25px;
-            background: linear-gradient(
-                to right, rgb(0, 249, 253), #d63e27 35%, rgb(245, 107, 255));
+            background: linear-gradient(to right, rgb(17, 176, 255), #fff 35%, #fe13ac);
             background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: gradient 1s linear infinite;
+            animation: gradient 3s linear infinite;
         }
 
         #result {
+            position: fixed;
+            transform: translate(0px, 20px);
             font-size: 28px;
             font-weight: bolder;
-            color: #a12f20d4;
+            color: #ffffffd4;
+            text-shadow:0 0 20px #00fffb,0 0 40px #0081bc;
             /* Light gray text color */
         }
 
@@ -100,10 +154,13 @@
 </head>
 
 <body>
-    <div id="prediction-result">
-        <h3>Prediction Result</h3>
-        <p id="result">{{ res }}</p>
+    <div class="card">
+        <div class="card2">
+            <h3><b>Prediction Result</b></h3>
+            <p id="result">{{ res }}</p>
+        </div>
     </div>
+
 </body>
 
 </html>
