@@ -1,5 +1,7 @@
-# Smart Crop Prediction System - Data-Driven Agriculture🌾
+# Smart Crop Prediction System🌾
 ### Preview 
+#### Link to site:  https://crop-prediction-fpho.onrender.com/   (Please excuse the slow loading for the links. They are hosted on a free service.🙏)
+
 ![img1](https://github.com/jyotirmaya16/CROP-Prediction-Project/assets/146333462/23004378-45d2-46a3-93ec-0eb45a7828c2)
 
 ## Project Overview
