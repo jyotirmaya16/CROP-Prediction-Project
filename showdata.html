@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            --s: 32px; /* control the size */
+
+  --c: #0000, #0b0b0b 0.5deg 119.5deg, rgba(26, 23, 23, 0) 120deg;
+  --g1: conic-gradient(from 60deg at 56.25% calc(425% / 6), var(--c));
+  --g2: conic-gradient(from 180deg at 43.75% calc(425% / 6), var(--c));
+  --g3: conic-gradient(from -60deg at 50% calc(175% / 12), var(--c));
+  background: var(--g1), var(--g1) var(--s) calc(1.73 * var(--s)), var(--g2),
+    var(--g2) var(--s) calc(1.73 * var(--s)), var(--g3) var(--s) 0,
+    var(--g3) 0 calc(1.73 * var(--s)) #000000;
+  background-size: calc(2 * var(--s)) calc(3.46 * var(--s));
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            
+        }
+
+        th, td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #42424294;
+            color: #ffffffd4;
+            text-shadow:0 0 20px #00fffb,0 0 40px #0081bc;
+            position: sticky;
+            animation: blip-shadow 0.8s infinite;
+           
+
+        }
+
+        tr:hover {
+            background-color: #42424294;
+            text-shadow:0 0 20px #00fffb,0 0 40px #0081bc;
+            transition: text-shadow 0.3s ease;
+            transition: background-color 0.8s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        @keyframes blip-shadow {
+            0% {
+        text-shadow: 0 0 20px #00fffb, 0 0 40px #0081bc;
+    }
+    25% {
+        text-shadow: 0 0 25px #00fffb, 0 0 50px #0081bc, 0 0 5px #ff0000;
+    }
+    50% {
+        text-shadow: 0 0 20px #00fffb, 0 0 40px #0081bc;
+    }
+    75% {
+        text-shadow: 0 0 30px #00fffb, 0 0 60px #0081bc, 0 0 10px #910202;
+    }
+    100% {
+        text-shadow: 0 0 20px #00fffb, 0 0 40px #0081bc;
+    }
+}
+
+        
+        table {
+            animation: fadeIn 1s;
+        }
+    </style>
+    <title>Crop Data Table</title>
+</head>
+<body>
+
+    <table>  
+        <thead>
+            <tr>
+                <th>Nitrogen</th>
+                <th>Phosphorus</th>
+                <th>Potassium</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>Ph</th>
+                <th>Rainfall</th>
+                <th>Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in data %}
+                <tr>
+                    <td>{{ item['Nitrogen'] }}</td>
+                    <td>{{ item['Phosphorus'] }}</td>
+                    <td>{{ item['Potassium'] }}</td>
+                    <td>{{ item['Temperature'] }}</td>
+                    <td>{{ item['Humidity'] }}</td>
+                    <td>{{ item['Ph'] }}</td>
+                    <td>{{ item['Rainfall'] }}</td>
+                    <td>{{ item['Result'] }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        <tr>
+            
+    </table>
+    <script>
+        // JavaScript to handle scrolling behavior for all th elements
+        window.onscroll = function() {
+            var tableHeaders = document.querySelectorAll("th");
+            if (tableHeaders) {
+                tableHeaders.forEach(function(tableHeader) {
+                    tableHeader.style.position = "sticky";
+                    tableHeader.style.top = "0";
+                });
+            }
+        };
+    </script>
+
+</body>
+</html>
