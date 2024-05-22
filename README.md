@@ -1,12 +1,15 @@
-#🌱 **Smart Crop Prediction System - Data-Driven Agriculture** 🌾
+# Smart Crop Prediction System - Data-Driven Agriculture🌾
 ### Preview 
+![img1](https://github.com/jyotirmaya16/CROP-Prediction-Project/assets/146333462/23004378-45d2-46a3-93ec-0eb45a7828c2)
 
+## Project Overview
 Revolutionizing agriculture through cutting-edge technology, this server-level project seamlessly integrates data science and web development. Leveraging Python and logistic regression, I've crafted a backend model that operates at the server level, predicting optimal crops based on vital soil measurements—nitrogen, phosphorus, rainfall, and potassium.
 
-**Key Features:**
+### Key Features:
 📊 **Server-Level Data Storage with SQL:** The project's architecture operates at the server level, ensuring robust data storage with a SQL database. All soil measurements collected from users are stored systematically, forming a comprehensive agricultural dataset for future server-level analysis and optimization.
 
-🌐 **Interactive Server-Level Web Application:** The frontend, crafted with HTML and CSS, provides an intuitive server-level web interface for farmers and enthusiasts. The server-level application hosts two primary functions:
+### 🌐Interactive Server-Level Web Application:
+The frontend, crafted with HTML and CSS, provides an intuitive server-level web interface for farmers and enthusiasts. The server-level application hosts two primary functions:
 
 1. **Make Server-Level Prediction:** Users input specific soil measurements through a user-friendly form. The server-level Python backend, powered by logistic regression, processes this data in real-time, delivering accurate server-level predictions on crops or plants that thrive in the given conditions.
 
@@ -19,7 +22,5 @@ Revolutionizing agriculture through cutting-edge technology, this server-level p
 
 **Future Server-Level Developments:**
 Ongoing server-level iterations will focus on refining the prediction model, introducing advanced machine learning algorithms, and expanding the server-level feature set based on user feedback.
-
-**Join me in ushering in a new era of sustainable and informed agriculture through this innovative server-level project!** 🌱💻
 
 #DataScience #AgricultureTech #Python #LogisticRegression #WebDevelopment #ServerLevel #DataDrivenDecisions
