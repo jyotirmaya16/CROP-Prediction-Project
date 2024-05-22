@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction</title>
+    <style>
+        body {
+            background-image: url('https://images.unsplash.com/photo-1530464684439-723262c0d16e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            backdrop-filter: blur(10px);
+            color: #a13020;
+            font-family: 'Arial', sans-serif;
+            font-weight: bold;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            opacity: 0; /* Initial opacity set to 0 for fade-in effect */
+            animation: fadeIn 0.5s ease-out forwards; /* Animation properties */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .form-container {
+            width: 400px;
+            background-color: #ee000000;
+            padding: 20px;
+            border-radius: 80px;
+            box-shadow: 0 0 10px rgba(237, 16, 16, 0);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            backdrop-filter: blur(15px);
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #a13020;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: #682f262d;
+            color: #350707;
+        }
+
+        .button {
+  height: 35px;
+  width: 150px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+}
+
+.button:hover {
+  box-shadow: .5px .5px 150px #252525;
+}
+
+.type1::after {
+  content: "Next";
+  height: 32px;
+  width: 150px;
+  background-color: #a13020;
+  color: #ffddd8;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(50px);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1::before {
+  content: "Predict";
+  height: 32px;
+  width: 150px;
+  background-color: #ffddd8;
+  color: #a13020;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  transform: translateY(0px) scale(1.2);
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+
+.type1:hover::after {
+  transform: translateY(0) scale(1.2);
+}
+
+.type1:hover::before {
+  transform: translateY(-50px) scale(0) rotate(120deg);
+}
+
+        .spinnerContainer {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: none; /* Initially hidden */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: rgba(208, 208, 208, 0.704); /* Semi-transparent white overlay */
+    width: 100%; /* Cover the entire viewport */
+    height: 100%; /* Cover the entire viewport */
+}
+
+
+        .spinner {
+            width: 56px;
+            height: 56px;
+            display: grid;
+            border: 4px solid #0000;
+            border-radius: 50%;
+            border-right-color: #a13020;
+            animation: tri-spinner 1s infinite linear;
+        }
+
+        .spinner::before,
+        .spinner::after {
+            content: "";
+            grid-area: 1/1;
+            margin: 2px;
+            border: inherit;
+            border-radius: 50%;
+            animation: tri-spinner 2s infinite;
+        }
+
+        .spinner::after {
+            margin: 8px;
+            animation-duration: 3s;
+        }
+
+        @keyframes tri-spinner {
+            100% {
+                transform: rotate(1turn);
+            }
+        }
+
+        .loader {
+            color: #4a4a4a;
+            font-family: "Poppins", sans-serif;
+            font-weight: 500;
+            font-size: 26px;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            height: 40px;
+            padding: 10px 10px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            border-radius: 8px;
+            margin-top: 10px; /* Adjusted margin for spacing */
+        }
+
+        .words {
+            position: relative;
+  overflow: hidden;
+        }
+
+        .word {
+            display: block;
+            height: 100%;
+            padding-left: 6px;
+            color: #a13020;
+            animation: cycle-words 5s infinite;
+        }
+
+        @keyframes cycle-words {
+            10% {
+                -webkit-transform: translateY(-105%);
+                transform: translateY(-105%);
+            }
+
+            25% {
+                -webkit-transform: translateY(-100%);
+                transform: translateY(-100%);
+            }
+
+            35% {
+                -webkit-transform: translateY(-205%);
+                transform: translateY(-205%);
+            }
+
+            50% {
+                -webkit-transform: translateY(-200%);
+                transform: translateY(-200%);
+            }
+
+            60% {
+                -webkit-transform: translateY(-305%);
+                transform: translateY(-305%);
+            }
+
+            75% {
+                -webkit-transform: translateY(-300%);
+                transform: translateY(-300%);
+            }
+
+            85% {
+                -webkit-transform: translateY(-405%);
+                transform: translateY(-405%);
+            }
+
+            100% {
+                -webkit-transform: translateY(-400%);
+                transform: translateY(-400%);
+            }
+        }
+        .loader p {
+        /* Adjust the margin or padding as needed */
+        margin-top: 2px; /* for example */
+    }
+    </style>
+</head>
+
+<body>
+
+    <form id="predictionForm" action="/prediction" method="POST" class="form-container" onsubmit="return submitForm()">
+        <label for="nitrogen">Nitrogen:</label>
+        <input type="number" id="nitrogen" name="nitrogen" required>
+
+        <label for="phosphorus">Phosphorus:</label>
+        <input type="number" id="phosphorus" name="phosphorus" required>
+
+        <label for="potassium">Potassium:</label>
+        <input type="number" id="potassium" name="potassium" required>
+
+        <label for="temperature">Temperature:</label>
+        <input type="number" id="temperature" name="temperature" required>
+
+        <label for="humidity">Humidity:</label>
+        <input type="number" id="humidity" name="humidity" required>
+
+        <label for="ph">pH:</label>
+        <input type="number" id="ph" name="ph" step="0.1" required>
+
+        <label for="rainfall">Rainfall:</label>
+        <input type="number" id="rainfall" name="rainfall" step="0.1" required>
+
+        <button class="button type1"></button>
+    </form>
+
+    <div id="spinnerContainer" class="spinnerContainer">
+        <div class="spinner"></div>
+        <div class="loader">
+            <p>Predicting</p>
+            <div class="words">
+                <span class="word">crop</span>
+                <span class="word">grain</span>
+                <span class="word">herb</span>
+                <span class="word">plant</span>
+                <span class="word">shrub</span>
+            </div>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+            // Check if the form is valid
+            if (document.getElementById('predictionForm').checkValidity()) {
+                // Display the spinner container
+                document.getElementById('spinnerContainer').style.display = 'flex';
+                return true; // Submit the form
+            } else {
+                return false; // Prevent form submission if not valid
+            }
+        }
+    </script>
+    
+</body>
+
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crop Prediction Project</title>
+    <style>
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1530464684439-723262c0d16e?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: 100%;
+            background-position: center;
+            backdrop-filter: blur(5px);
+            z-index: -1;
+        }
+
+        body {
+            background: none;
+            color: #fff;
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            transform: translate(0px, 64px);
+            position: relative;
+            background-color: rgba(255, 232, 227, 0.135);
+            backdrop-filter: blur(15px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 2px solid #ad4431; /* Border color for the container */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #a13020;
+            animation: flipInY 0.8s ease-out;
+        }
+        
+
+        .button-container {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+            justify-content: center;
+            animation: fadeInUp 0.3s ease-out;
+        }
+
+        .c-button {
+            color: #000;
+            font-weight: 700;
+            font-size: 16px;
+            text-decoration: none;
+            padding: 0.9em 1.6em;
+            cursor: pointer;
+            display: inline-block;
+            vertical-align: middle;
+            position: relative;
+            z-index: 1;
+        }
+
+        .c-button--gooey {
+            color: #a13020;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 2px solid #a13020;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0); /* Make it transparent */
+            position: relative;
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs {
+            height: 100%;
+            filter: url(#goo);
+            overflow: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: -3px;
+            right: -1px;
+            z-index: -1;
+        }
+
+        .c-button--gooey .c-button__blobs div {
+            background-color: #a13020;
+            width: 34%;
+            height: 100%;
+            border-radius: 100%;
+            position: absolute;
+            transform: scale(1.4) translateY(125%) translateZ(0);
+            transition: all 700ms ease;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(1) {
+            left: -5%;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(2) {
+            left: 30%;
+            transition-delay: 60ms;
+        }
+
+        .c-button--gooey .c-button__blobs div:nth-child(3) {
+            left: 66%;
+            transition-delay: 25ms;
+        }
+
+        .c-button--gooey:hover {
+            color: #ffcbcd;
+        }
+
+        .c-button--gooey:hover .c-button__blobs div {
+            transform: scale(1.4) translateY(0) translateZ(0);
+        }
+
+        .paragraph {
+            opacity: 0;
+            color: #a04739;
+            transform: translateY(0);
+            animation: fadeIn 0.5s ease-out forwards;
+            animation-delay: 0.7s;
+            margin-top: 20px;
+            max-width: 600px;
+            text-align: center;
+        }
+        
+
+        @keyframes flipInY {
+    from {
+        transform: perspective(400px) rotateY(90deg);
+        opacity: 0;
+    }
+
+    to {
+        transform: perspective(400px) rotateY(0deg);
+        opacity: 1;
+    }
+}
+
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animated {
+            animation: slideIn 0.5s ease-out;
+        }
+
+        .social-links,.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+.social-btn a {
+    text-decoration: none; /* Remove underline from link */
+    color: inherit; /* Inherit color from the parent */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+.social-btn {
+  transform: translate(-605px, -380px); 
+  cursor: pointer;
+  height: 40px;
+  width: 40px;
+  font-family: 'Titillium Web', sans-serif;
+  color: #333;
+  border-radius: 10px;
+  box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.331);
+  background: #ea00ff00;
+  backdrop-filter: blur(15px);
+  margin: 5px;
+  transition: 0.3s;
+  justify-content: center;
+}
+
+.social-btn svg {
+  height: 20px;
+  width: 20px;
+}
+
+
+.social-btn span {
+    width: 0px;
+    overflow: hidden;
+    transition: 0.3s;
+    text-align: center;
+    margin-left: 5px;
+    
+}
+
+.social-btn:hover {
+  width: 150px;
+  border-radius: 5px;
+}
+
+.social-btn:hover span {
+  padding: 2px;
+  width: 80px;
+}
+
+#linkedin svg {
+  fill: #0e76a8;
+}
+
+#github {
+  fill: #333;
+}
+.ligal{
+    opacity: 0;
+    position: relative;
+  top: -150px;
+  left: -600px;
+   color: #000000;
+   transform: translateY(0);
+   animation: fadeIn 0.5s ease-out forwards;
+   animation-delay: 2s;
+   max-width: 600px;
+   mix-blend-mode: overlay;
+ }
+
+
+    </style>
+    <script>
+        function redirectToPrediction() {
+            window.location.href = "/prediction";
+        }
+
+        function redirectToShowData() {
+            window.location.href = "/showdata";
+        }
+    </script>
+</head>
+
+<body class="animated">
+    <div class="container">
+        <h1>Crop Prediction Project</h1>
+        <div class="button-container">
+            <button class="c-button c-button--gooey" onclick="redirectToPrediction()">Make Prediction
+                <div class="c-button__blobs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </button>
+            <button class="c-button c-button--gooey" onclick="redirectToShowData()">Show Data
+                <div class="c-button__blobs">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                </div>
+            </button>
+        </div>
+        <p class="paragraph">The primary objective of this project is to develop a logistic regression model that takes various soil-related parameters as input and predicts the most suitable crop type for cultivation. By leveraging machine learning, we aim to provide farmers with valuable insights into crop selection, allowing them to make informed decisions and maximize yield.</p>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: block; height: 0; width: 0;">
+        <defs>
+            <filter id="goo">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7"
+                    result="goo"></feColorMatrix>
+                <feBlend in="SourceGraphic" in2="goo"></feBlend>
+            </filter>
+        </defs>
+    </svg>
+    <div id="linkedin" class="social-btn flex-center">
+        <a href="https://www.linkedin.com/in/jyotirmaya-maharana-a32333299/" target="_blank">
+          <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"></path>
+          </svg>
+          <span>linkedin</span>
+        </a>
+      </div>
+      
+      <div id="github" class="social-btn flex-center">
+        <a href="https://github.com/jyotirmaya16" target="_blank">
+          <svg viewBox="0 0 24 24" height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path>
+          </svg>
+          <span>github</span>
+        </a>
+      </div>
+      <p class="ligal">Created by jyotirmaya</p>
+</body>
+
+</html>
