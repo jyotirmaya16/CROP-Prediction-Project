@@ -1,4 +1,5 @@
-🌱 **Smart Crop Prediction System - Data-Driven Agriculture** 🌾
+#🌱 **Smart Crop Prediction System - Data-Driven Agriculture** 🌾
+### Preview 
 
 Revolutionizing agriculture through cutting-edge technology, this server-level project seamlessly integrates data science and web development. Leveraging Python and logistic regression, I've crafted a backend model that operates at the server level, predicting optimal crops based on vital soil measurements—nitrogen, phosphorus, rainfall, and potassium.
 
